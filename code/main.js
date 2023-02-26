@@ -68,6 +68,10 @@ function generatePDF(resultText, int){
     }
 }
 
+function correctB64Formatting(b64) {
+    return b64.split(',')[1];
+}
+
 module.exports = async function readInImages(b64blobs) {
     // Imports the Google Cloud client libraries
     //const jsPDF  = require("jspdf");
@@ -80,16 +84,16 @@ module.exports = async function readInImages(b64blobs) {
         const request = {
             image: {
               //content: fs.readFileSync(files[i]),
-              content: b64blobs[i].substring(22)
+              content: correctB64Formatting(b64blobs[i])
             },
             feature: {
               languageHints: ['en-t-i0-handwrit'],
             },
-          };
+        };
         
-          const [result] = await client.documentTextDetection(request);
-          const fullTextAnnotation = result.fullTextAnnotation;
-          generatePDF(fullTextAnnotation.text, i);
+        const [result] = await client.documentTextDetection(request);
+        const fullTextAnnotation = result.fullTextAnnotation;
+        generatePDF(fullTextAnnotation.text, i);
     }
 }
 //readInImage();
