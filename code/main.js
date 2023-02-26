@@ -17,7 +17,6 @@ let files = [];
 
 function generatePDF(resultText, int){
     pdf.text(`${resultText}`,10,10);
-    pdf.save("genPDFTest.pdf");
     if(files.length > 1 && int < files.length)
     {
         pdf.addPage();
@@ -51,5 +50,6 @@ module.exports = async function readInImages(b64blobs) {
         const fullTextAnnotation = result.fullTextAnnotation;
         generatePDF(fullTextAnnotation.text, i);
     }
+    pdf.save("genPDFTest.pdf");
 }
 //readInImage();
