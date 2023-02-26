@@ -6,8 +6,9 @@ const port = 8080;
 
 const lib = require('./main');
 
+
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(express.static('public'));
-app.use(bodyParser.json());
 
 app.post('/api/test', (req, res) => {
     lib(req.body)

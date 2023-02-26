@@ -2,50 +2,6 @@
 // Imports the Google Cloud client libraries
 const projectId = 'chickenscratch-378917';
 
-// Attempted web version , not currently working
-//import vision from '/@google-cloud/vision';
-//import { debug } from './console';
-//import fs from '/fs';
-/*
-function onload()
-{
-    console.log("On load");
-    document.getElementById("noteSubmitButton").onclick = async() =>{
-        readInImage();
-    };
-}
-
-async function readInImage() {
-
-    //const vision = require('@google-cloud/vision').v1p3beta1;
-    //const fs = require('fs');
-
-    console.log("Called readInImage");
-    
-    // Creates a client
-    const client = new vision.ImageAnnotatorClient();
-
-    const files = document.getElementById('files').files;
-
-    //let fileName = files[0];
-
-    for(let i = 0; i < files.length; i++)
-    {
-        const request = {
-            image: {
-                content: fs.readFileSync(files[i]),
-            },
-            feature: {
-                languageHints: ['en-t-i0-handwrit'],
-            },
-        };
-    
-        const [result] = await client.documentTextDetection(request);
-        const fullTextAnnotation = result.fullTextAnnotation;
-        console.log(`Full text: ${fullTextAnnotation.text}`);
-    }
-}
-*/
 
 //Hard coded version, Node.js
 const { jsPDF }  = require("jspdf");
