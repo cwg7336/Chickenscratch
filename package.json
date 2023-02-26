@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@google-cloud/vision": "^3.1.2",
+    "body-parser": "^1.20.2",
     "jspdf": "^2.5.1"
   },
   "scripts": {

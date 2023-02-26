@@ -68,25 +68,19 @@ function generatePDF(resultText, int){
     }
 }
 
-module.exports = async function readInImage() {
+module.exports = async function readInImages(b64blobs) {
     // Imports the Google Cloud client libraries
     //const jsPDF  = require("jspdf");
     const vision = require('@google-cloud/vision').v1p3beta1;
-    const fs = require('fs');
- 
+
     // Creates a client
     const client = new vision.ImageAnnotatorClient();
- 
-    files.push(`./media/example2.jpg`);
-    files.push(`./media/example.jpg`);
-    files.push(`./media/wakeupcat.jpg`);
-
-    
-    for(let i = 0; i < files.length; i++)
+    for(let i = 0; i < b64blobs.length; i++)
     {
         const request = {
             image: {
-              content: fs.readFileSync(files[i]),
+              //content: fs.readFileSync(files[i]),
+              content: b64blobs[i].substring(22)
             },
             feature: {
               languageHints: ['en-t-i0-handwrit'],
@@ -98,5 +92,4 @@ module.exports = async function readInImage() {
           generatePDF(fullTextAnnotation.text, i);
     }
 }
-
 //readInImage();
