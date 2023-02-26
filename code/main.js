@@ -31,6 +31,13 @@ module.exports = async function readInImages(b64blobs) {
     // Imports the Google Cloud client libraries
     //const jsPDF  = require("jspdf");
     const vision = require('@google-cloud/vision').v1p3beta1;
+    
+    pdf = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: 'a5',
+        putOnlyUsedFonts:true
+    });
 
     // Creates a client
     const client = new vision.ImageAnnotatorClient();
@@ -50,6 +57,7 @@ module.exports = async function readInImages(b64blobs) {
         const fullTextAnnotation = result.fullTextAnnotation;
         generatePDF(fullTextAnnotation.text, i);
     }
-    pdf.save("genPDFTest.pdf");
+    await pdf.save("genPDFTest.pdf", { returnPromise:true });
+    console.log("Saving pdf");
 }
 //readInImage();

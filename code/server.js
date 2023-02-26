@@ -10,9 +10,10 @@ const lib = require('./main');
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(express.static('public'));
 
-app.post('/api/test', (req, res) => {
-    lib(req.body)
-        .then(res.download('genPDFTest.pdf'));
+app.post('/api/test', async (req, res) => {
+    
+    lib(req.body);
+    setTimeout(() => res.download('genPDFTest.pdf'), 3000);
 })
 
 app.listen(port, () => {
